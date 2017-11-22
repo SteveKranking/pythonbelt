@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="header">
+            <p> <a href="/logout">Logout</a> </p>
+    </div>
+
+    <h1> Welcome, {{self.first_name}} </h1>
+    <p> {{self.first_name}}'s Friends </p>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+
+    
+    <div>
+      <p> {{numfriends}}</p>
+   </div>
+
+    {%for friend in friendships %}
+    <tr>
+        <td> {{ friend.friend.first_name }} </td>
+        <td> 
+            <a href="/user/{{friend.friend.id}}"> View Profile </a> 
+            <span> or </span>
+            <a href="/remove/{{friend.id}}"> Remove Friend </a>
+        </td>
+    </tr>
+    {%endfor%}
+
+    </table> <br />
+    <p> Potential friends!!! </p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+
+    {%for friend in notFriends %}
+
+    <tr>
+        <td>
+            <a href="/user/{{friend.id}}"> {{ friend.first_name }} </a>
+        </td>
+        <td> 
+            <form action="/join/{{friend.id}}"> 
+                {% csrf_token %} 
+                <input type="submit" value="Add Friend"> 
+            </form>
+        </td>
+    </tr>
+    {%endfor%}
+</table>
+
+
+</body>
+</html>

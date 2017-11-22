@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "register">
+    <form action="/register" method="post">
+        {% csrf_token %}
+        <h2> Register </h2> 
+    <div>
+    <p> Email: <input  type="text" name ="email"> </p>
+    <p> First name: <input  type="text" name ="first_name"> </p>
+    <p> Last name: <input  type="text" name ="last_name"> </p>
+    <p> Password: <input  type="password" name ="password"> </p>
+    <p> Confirm Password: <input  type="password" name ="confirm_password"> </p>
+    <p> Date of Birth: <input type= "date" name="birthday"> </p>
+</div>
+<div class = "move">
+    <input type="submit" value="Submit">
+</div>
+</div>
+</form>
+
+<div id = "login">
+    <form action="/login" method="post">
+        {% csrf_token %}
+    <h2> Login </h2>
+    <div>
+        <p> Email: <input  type="text" name = "email"></p>
+        <p> Password: <input  type="password" name = "password"></p>
+    </div>
+    <div class = "move">
+        <input type="submit" value ="Login">
+    </div>
+
+
+    </form>
+</div>
+
+<!-- errors -->
+    {% if messages %}
+    <div>
+      {% for message in messages %}
+       <p> {{message}}</p>
+      {% endfor %}
+      </div>
+
+    {% endif %}
+
+</body>
+</html>
